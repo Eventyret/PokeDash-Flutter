@@ -1,4 +1,4 @@
-package com.example.pokemon_api;
+package dev.dehlin.pokemon_api;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;
