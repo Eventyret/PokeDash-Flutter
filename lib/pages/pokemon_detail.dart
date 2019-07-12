@@ -6,8 +6,6 @@ class PokemonDetails extends StatelessWidget {
 
   const PokemonDetails({this.pokemon});
 
-  bodyWidget() => Container();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,8 +14,50 @@ class PokemonDetails extends StatelessWidget {
         backgroundColor: Colors.cyan,
         title: Text(pokemon.name),
       ),
-      backgroundColor: Colors.cyan,
-      body: bodyWidget(),
+      
+      body: Stack(
+        children: <Widget>[
+          Container(
+            child: Column(
+              children: <Widget>[
+                Text(pokemon.name),
+                Text("Height: ${pokemon.height}"),
+                Text("Weight: ${pokemon.weight}"),
+                Text("Types"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: pokemon.type
+                      .map((t) => FilterChip(
+                            label: Text(t),
+                            onSelected: (b) {},
+                          ))
+                      .toList(),
+                ),
+                Text("Weakness"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: pokemon.weaknesses
+                      .map((t) => FilterChip(
+                            label: Text(t),
+                            onSelected: (b) {},
+                          ))
+                      .toList(),
+                ),
+                Text("Next Evolution"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: pokemon.nextEvolution
+                      .map((n) => FilterChip(
+                            label: Text(n.name),
+                            onSelected: (b) {},
+                          ))
+                      .toList(),
+                ),
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
